@@ -5,7 +5,7 @@ import { TrendingUp, Users, DollarSign, ArrowRight } from 'lucide-react';
 
 export const CaseStudySection: React.FC = () => {
   return (
-    <section className="py-20 bg-background">
+    <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -50,24 +50,24 @@ export const CaseStudySection: React.FC = () => {
               
               {/* Right Column - Results */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                <div className="dark-card p-6 rounded-lg shadow-sm text-center">
-                  <div className="w-12 h-12 mx-auto mb-4 bg-success/20 rounded-full flex items-center justify-center">
+                <div className="bg-white p-6 rounded-lg shadow-sm text-center">
+                  <div className="w-12 h-12 mx-auto mb-4 bg-success/10 rounded-full flex items-center justify-center">
                     <TrendingUp className="h-6 w-6 text-success" />
                   </div>
                   <div className="text-3xl font-bold text-success mb-2">4.6x</div>
                   <div className="text-sm text-muted-foreground">ROAS Improvement</div>
                 </div>
                 
-                <div className="dark-card p-6 rounded-lg shadow-sm text-center">
-                  <div className="w-12 h-12 mx-auto mb-4 bg-primary/20 rounded-full flex items-center justify-center">
+                <div className="bg-white p-6 rounded-lg shadow-sm text-center">
+                  <div className="w-12 h-12 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
                     <Users className="h-6 w-6 text-primary" />
                   </div>
                   <div className="text-3xl font-bold text-primary mb-2">312</div>
                   <div className="text-sm text-muted-foreground">Qualified Leads</div>
                 </div>
                 
-                <div className="dark-card p-6 rounded-lg shadow-sm text-center">
-                  <div className="w-12 h-12 mx-auto mb-4 bg-warning/20 rounded-full flex items-center justify-center">
+                <div className="bg-white p-6 rounded-lg shadow-sm text-center">
+                  <div className="w-12 h-12 mx-auto mb-4 bg-warning/10 rounded-full flex items-center justify-center">
                     <DollarSign className="h-6 w-6 text-warning" />
                   </div>
                   <div className="text-3xl font-bold text-warning mb-2">37%</div>
@@ -77,7 +77,7 @@ export const CaseStudySection: React.FC = () => {
             </div>
             
             <div className="mt-12 text-center">
-              <div className="dark-card/50 backdrop-blur-sm rounded-xl p-6 max-w-2xl mx-auto">
+              <div className="bg-white/50 backdrop-blur-sm rounded-xl p-6 max-w-2xl mx-auto">
                 <h4 className="text-lg font-semibold mb-3">Timeline: 90 Days</h4>
                 <p className="text-muted-foreground mb-6">
                   From campaign launch to hitting all growth targets - exactly as promised.

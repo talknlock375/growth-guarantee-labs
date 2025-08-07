@@ -33,7 +33,7 @@ export const SolutionSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-background">
+    <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -46,7 +46,7 @@ export const SolutionSection: React.FC = () => {
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {solutions.map((solution, index) => (
-            <Card key={index} className="p-6 hover:shadow-lg transition-shadow border-l-4 border-l-primary dark-card">
+            <Card key={index} className="p-6 hover:shadow-lg transition-shadow border-l-4 border-l-primary">
               <div className="w-12 h-12 mb-4 bg-primary/10 rounded-lg flex items-center justify-center">
                 <solution.icon className="h-6 w-6 text-primary" />
               </div>

@@ -5,10 +5,10 @@ import { Shield, Calendar, TrendingUp, ArrowRight } from 'lucide-react';
 
 export const GuaranteeSection: React.FC = () => {
   return (
-    <section className="py-20 bg-gradient-to-br from-primary/20 via-background to-success/20">
+    <section className="py-20 bg-gradient-to-br from-primary/10 via-background to-success/10">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 bg-primary/20 rounded-full px-6 py-2 mb-8">
+          <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-6 py-2 mb-8">
             <Shield className="h-5 w-5 text-primary" />
             <span className="font-semibold text-primary">100% Risk-Free Guarantee</span>
           </div>
@@ -23,10 +23,10 @@ export const GuaranteeSection: React.FC = () => {
             Or We Work for Free Until We Do.
           </div>
           
-          <Card className="p-8 md:p-12 dark-card shadow-xl max-w-3xl mx-auto mb-12">
+          <Card className="p-8 md:p-12 bg-white shadow-xl max-w-3xl mx-auto mb-12">
             <div className="grid md:grid-cols-3 gap-8 mb-8">
               <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-4 bg-primary/20 rounded-full flex items-center justify-center">
+                <div className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
                   <Calendar className="h-8 w-8 text-primary" />
                 </div>
                 <h3 className="font-bold text-lg mb-2">90-Day Timeline</h3>
@@ -34,7 +34,7 @@ export const GuaranteeSection: React.FC = () => {
               </div>
               
               <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-4 bg-success/20 rounded-full flex items-center justify-center">
+                <div className="w-16 h-16 mx-auto mb-4 bg-success/10 rounded-full flex items-center justify-center">
                   <TrendingUp className="h-8 w-8 text-success" />
                 </div>
                 <h3 className="font-bold text-lg mb-2">2x Revenue Growth</h3>
@@ -42,7 +42,7 @@ export const GuaranteeSection: React.FC = () => {
               </div>
               
               <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-4 bg-warning/20 rounded-full flex items-center justify-center">
+                <div className="w-16 h-16 mx-auto mb-4 bg-warning/10 rounded-full flex items-center justify-center">
                   <Shield className="h-8 w-8 text-warning" />
                 </div>
                 <h3 className="font-bold text-lg mb-2">Zero Risk</h3>
