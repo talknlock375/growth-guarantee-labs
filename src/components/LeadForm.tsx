@@ -46,7 +46,7 @@ export const LeadForm: React.FC<LeadFormProps> = ({ className = '', variant = 'h
   const isHero = variant === 'hero';
 
   return (
-    <Card className={`p-6 ${isHero ? 'bg-white shadow-2xl' : 'bg-muted/50'} ${className}`}>
+    <Card className={`p-6 ${isHero ? 'dark-card shadow-2xl' : 'dark-card/80 backdrop-blur-sm'} ${className}`}>
       <div className="text-center mb-6">
         <h3 className={`font-bold ${isHero ? 'text-2xl' : 'text-xl'} mb-2`}>
           Get Your Free Audit & Growth Plan

@@ -18,7 +18,7 @@ export const SocialProofSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-muted/30">
+    <section className="py-20 dark-section">
       <div className="container mx-auto px-4">
         {/* Trusted By Brands */}
         <div className="text-center mb-16">
@@ -28,7 +28,7 @@ export const SocialProofSection: React.FC = () => {
           
           <div className="flex flex-wrap justify-center items-center gap-8 mb-12">
             {brands.map((brand, index) => (
-              <div key={index} className="flex items-center gap-3 bg-white rounded-lg px-6 py-4 shadow-sm">
+              <div key={index} className="flex items-center gap-3 dark-card rounded-lg px-6 py-4 shadow-sm">
                 <span className="text-2xl">{brand.logo}</span>
                 <span className="font-semibold text-lg">{brand.name}</span>
               </div>
@@ -48,7 +48,7 @@ export const SocialProofSection: React.FC = () => {
         
         {/* Testimonial */}
         <div className="max-w-4xl mx-auto">
-          <Card className="p-8 bg-white shadow-lg">
+          <Card className="p-8 dark-card shadow-lg">
             <div className="text-center">
               <Quote className="h-12 w-12 text-primary mx-auto mb-6 opacity-20" />
               

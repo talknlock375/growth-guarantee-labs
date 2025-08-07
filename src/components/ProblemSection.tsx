@@ -22,7 +22,7 @@ export const ProblemSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-muted/30">
+    <section className="py-20 dark-section">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -35,7 +35,7 @@ export const ProblemSection: React.FC = () => {
         
         <div className="grid md:grid-cols-3 gap-8">
           {problems.map((problem, index) => (
-            <Card key={index} className="p-8 text-center hover:shadow-lg transition-shadow bg-white">
+            <Card key={index} className="p-8 text-center hover:shadow-lg transition-shadow dark-card">
               <div className="w-16 h-16 mx-auto mb-6 bg-destructive/10 rounded-full flex items-center justify-center">
                 <problem.icon className="h-8 w-8 text-destructive" />
               </div>
