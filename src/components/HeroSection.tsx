@@ -10,7 +10,7 @@ export const HeroSection: React.FC = () => {
       {/* Background */}
       <div className="absolute inset-0 gradient-hero opacity-95"></div>
       <div 
-        className="absolute inset-0 bg-cover bg-center mix-blend-overlay opacity-20"
+        className="absolute inset-0 bg-cover bg-center mix-blend-multiply opacity-40"
         style={{ backgroundImage: `url(${heroImage})` }}
       ></div>
       
@@ -26,7 +26,7 @@ export const HeroSection: React.FC = () => {
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
               Struggling to Scale with{' '}
-              <span className="text-gradient bg-gradient-to-r from-warning to-success bg-clip-text text-transparent">
+              <span className="text-gradient bg-clip-text text-transparent">
                 Google Ads?
               </span>
             </h1>
