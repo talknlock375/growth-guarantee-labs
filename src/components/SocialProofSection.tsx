@@ -1,73 +1,152 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Card } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Star, Quote } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export const SocialProofSection: React.FC = () => {
-  const brands = [
-    { name: 'Shopify', logo: '🛍️' },
-    { name: 'Upgrad', logo: '🎓' },
-    { name: 'Blinkit', logo: '⚡' },
-    { name: 'Nomad Travels', logo: '✈️' }
+  const testimonials = [
+    {
+      quote: "In just 60 days, we doubled our inbound leads and reduced cost-per-lead by 35%. Talknlock’s strategies actually work.",
+      author: "Ravi Mehta",
+      role: "Founder, GrowthLabs",
+    },
+    {
+      quote: "The transparency in reporting and the real-time ROI dashboard changed how we look at paid ads. Finally, numbers we can trust.",
+      author: "Claire Thompson",
+      role: "CMO, FinReach",
+    },
+    {
+      quote: "Within 3 months, our revenue grew by 2.3x, and we’re still scaling. The A/B testing process is relentless.",
+      author: "David Kim",
+      role: "CEO, EcomElite",
+    },
+    {
+      quote: "We’ve worked with agencies before, but this is the first time we got a clear strategy and measurable results in weeks.",
+      author: "Priya Nair",
+      role: "Director, SaaSConnect",
+    },
   ];
 
-  const certifications = [
-    { name: 'Google Partner', badge: '🏆' },
-    { name: 'Meta Blueprint', badge: '📘' },
-    { name: 'HubSpot Certified', badge: '🔶' }
-  ];
+  const marqueeRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!marqueeRef.current || !trackRef.current) return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      const track = trackRef.current as HTMLDivElement;
+      const gap = 24; // gap-6
+
+      const build = () => {
+        // Ensure duplicated content for seamless loop
+        if (track.dataset.duplicated !== 'true') {
+          const children = Array.from(track.children);
+          children.forEach((child) => track.appendChild(child.cloneNode(true)));
+          track.dataset.duplicated = 'true';
+        }
+
+        // Calculate half width (original set)
+        const originalChildren = Array.from(track.children).slice(0, testimonials.length) as HTMLElement[];
+        const distance = originalChildren.reduce((acc, el) => acc + el.offsetWidth, 0) + gap * (originalChildren.length - 1);
+
+        const tween = gsap.to(track, {
+          x: `-=${distance}`,
+          duration: 25,
+          ease: 'none',
+          repeat: -1,
+          modifiers: {
+            x: (x: string) => {
+              const val = parseFloat(x);
+              const m = -distance;
+              return isNaN(val) ? x : ((val % m) + m) % m + 'px';
+            },
+          },
+          paused: true,
+        });
+
+        const st = ScrollTrigger.create({
+          trigger: marqueeRef.current!,
+          start: 'top bottom',
+          end: 'bottom top',
+          onEnter: () => tween.play(),
+          onEnterBack: () => tween.play(),
+          onLeave: () => tween.pause(),
+          onLeaveBack: () => tween.pause(),
+        });
+
+        const pause = () => tween.pause();
+        const play = () => tween.play();
+        marqueeRef.current!.addEventListener('mouseenter', pause);
+        marqueeRef.current!.addEventListener('mouseleave', play);
+        marqueeRef.current!.addEventListener('touchstart', pause);
+        marqueeRef.current!.addEventListener('touchend', play);
+
+        return () => {
+          marqueeRef.current?.removeEventListener('mouseenter', pause);
+          marqueeRef.current?.removeEventListener('mouseleave', play);
+          marqueeRef.current?.removeEventListener('touchstart', pause);
+          marqueeRef.current?.removeEventListener('touchend', play);
+          st.kill();
+          tween.kill();
+        };
+      };
+
+      let cleanup = build();
+      const onResize = () => {
+        cleanup?.();
+        gsap.set(track, { x: 0 });
+        cleanup = build();
+      };
+      window.addEventListener('resize', onResize);
+
+      return () => {
+        window.removeEventListener('resize', onResize);
+        cleanup?.();
+      };
+    }, marqueeRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <section className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
-        {/* Trusted By Brands */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8">
-            Trusted by Industry Leaders
+        {/* Heading */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold">
+            Loved by Businesses Worldwide
           </h2>
-          
-          <div className="flex flex-wrap justify-center items-center gap-8 mb-12">
-            {brands.map((brand, index) => (
-              <div key={index} className="flex items-center gap-3 bg-white rounded-lg px-6 py-4 shadow-sm">
-                <span className="text-2xl">{brand.logo}</span>
-                <span className="font-semibold text-lg">{brand.name}</span>
-              </div>
-            ))}
-          </div>
-          
-          {/* Certifications */}
-          <div className="flex flex-wrap justify-center gap-4 mb-16">
-            {certifications.map((cert, index) => (
-              <Badge key={index} variant="secondary" className="px-4 py-2 text-sm">
-                <span className="mr-2">{cert.badge}</span>
-                {cert.name}
-              </Badge>
+        </div>
+
+        {/* Desktop/Tablet: GSAP marquee */}
+        <div ref={marqueeRef} className="relative hidden md:block overflow-hidden">
+          <div ref={trackRef} className="flex items-stretch gap-6 will-change-transform">
+            {testimonials.map((t, idx) => (
+              <Card
+                key={idx}
+                className="min-w-[48%] lg:min-w-[32%] p-6 rounded-xl bg-card shadow-sm hover:shadow-md transition-transform duration-300 hover:-translate-y-1"
+              >
+                <p className="text-[18px] leading-relaxed text-foreground/90">“{t.quote}”</p>
+                <div className="mt-4 text-sm text-muted-foreground">— {t.author}, {t.role}</div>
+              </Card>
             ))}
           </div>
         </div>
-        
-        {/* Testimonial */}
-        <div className="max-w-4xl mx-auto">
-          <Card className="p-8 bg-white shadow-lg">
-            <div className="text-center">
-              <Quote className="h-12 w-12 text-primary mx-auto mb-6 opacity-20" />
-              
-              <blockquote className="text-xl md:text-2xl font-medium leading-relaxed mb-6 text-foreground">
-                "AdScale Pro completely transformed our Google Ads performance. Within 90 days, we saw a 4.6x ROAS improvement and generated 312 qualified leads. Their strategic approach and transparent reporting gave us the confidence to scale our ad spend significantly."
-              </blockquote>
-              
-              <div className="flex items-center justify-center gap-1 mb-4">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <Star key={star} className="h-5 w-5 fill-warning text-warning" />
-                ))}
-              </div>
-              
-              <cite className="not-italic">
-                <div className="font-bold text-lg">Sarah Johnson</div>
-                <div className="text-muted-foreground">VP of Marketing, Blue Ribbon SaaS</div>
-              </cite>
-            </div>
-          </Card>
+
+        {/* Mobile: swipeable scroll-snap */}
+        <div className="md:hidden -mx-4 px-4 overflow-x-auto snap-x snap-mandatory">
+          <div className="flex gap-4">
+            {testimonials.map((t, idx) => (
+              <Card
+                key={idx}
+                className="snap-center shrink-0 w-[85%] p-6 rounded-xl bg-card shadow-sm hover:shadow-md transition-transform duration-300 hover:-translate-y-1"
+              >
+                <p className="text-[18px] leading-relaxed text-foreground/90">“{t.quote}”</p>
+                <div className="mt-4 text-sm text-muted-foreground">— {t.author}, {t.role}</div>
+              </Card>
+            ))}
+          </div>
         </div>
         
         {/* Stats */}
