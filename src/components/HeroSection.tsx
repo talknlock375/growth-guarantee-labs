@@ -1,15 +1,48 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { LeadForm } from './LeadForm';
 import { ArrowRight, TrendingUp, Users, Zap } from 'lucide-react';
+import gsap from 'gsap';
 import heroImage from '@/assets/hero-bg.jpg';
 export const HeroSection: React.FC = () => {
-  return <section className="relative min-h-screen flex items-center py-20 overflow-hidden">
+  const fireRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    if (!fireRef.current) return;
+    const mobile = window.matchMedia('(max-width: 768px)').matches;
+    const intensity = mobile ? 0.75 : 1;
+    const glow1 = `rgba(255,215,0,${0.5 * intensity})`;
+    const glow2 = `rgba(255,69,0,${0.4 * intensity})`;
+    const rand = gsap.utils.random(1.2, 2.5, true);
+    const tl = gsap.timeline({ repeat: -1, yoyo: true });
+    tl
+      .to(fireRef.current, {
+        textShadow: `0 0 10px ${glow1}, 0 0 16px ${glow2}`,
+        duration: rand(),
+        ease: 'sine.inOut',
+        filter: 'blur(0.2px)',
+      })
+      .to(fireRef.current, {
+        textShadow: `0 0 4px ${glow1}, 0 0 8px ${glow2}`,
+        duration: rand(),
+        ease: 'sine.inOut',
+        filter: 'blur(0px)',
+      });
+    return () => tl.kill();
+  }, []);
+
+  return (
+    <section className="relative min-h-screen flex items-center py-12 md:py-20 overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 gradient-hero opacity-95"></div>
-      <div className="absolute inset-0 bg-cover bg-center mix-blend-multiply opacity-40" style={{
-      backgroundImage: `url(${heroImage})`
-    }}></div>
+      <div className="absolute inset-0 gradient-hero opacity-95 parallax" data-parallax="true" data-speed="0.15"></div>
+      <div
+        className="absolute inset-0 bg-cover bg-center mix-blend-multiply opacity-40 parallax"
+        style={{
+          backgroundImage: `url(${heroImage})`
+        }}
+        data-parallax="true"
+        data-speed="0.25"
+      ></div>
       
       {/* Content */}
       <div className="container mx-auto px-4 relative z-10">
@@ -17,19 +50,19 @@ export const HeroSection: React.FC = () => {
           {/* Left Column - Headlines & CTA */}
           <div className="text-white">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
-              <TrendingUp className="h-4 w-4 text-warning" />
+              <TrendingUp className="h-4 w-4 text-primary" />
               <span className="text-sm font-medium">Free Growth Analysis</span>
             </div>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
               Struggling to Scale with{' '}
-              <span className="text-gradient bg-clip-text text-transparent">
+              <span ref={fireRef} className="text-fire-gradient bg-clip-text text-transparent">
                 Google Ads?
               </span>
             </h1>
             
-            <h2 className="text-xl font-medium mb-8 text-white/90 leading-relaxed md:text-2xl">
-              Get a <strong>Free Audit & Growth Plan</strong> that reveals exactly why your campaigns aren't converting and how to fix it in 90 days.
+            <h2 className="text-xl font-medium mb-8 text-white/90 leading-relaxed md:text-2xl line-clamp-2 md:[-webkit-line-clamp:unset] md:[display:block] md:[-webkit-box-orient:unset]">
+              Free Audit & Growth Plan to Fix Your Ads in 90 Days.
             </h2>
             
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
@@ -71,5 +104,6 @@ export const HeroSection: React.FC = () => {
           <div className="w-1 h-3 bg-white/60 rounded-full mt-2"></div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };

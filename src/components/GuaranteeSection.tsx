@@ -13,7 +13,7 @@ export const GuaranteeSection: React.FC = () => {
             <span className="font-semibold text-primary">100% Risk-Free Guarantee</span>
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
+          <h2 className="text-4xl md:text-5xl font-bold mb-8 tracking-[-0.5px] leading-[1.2] md:leading-[1.1]" data-parallax="true" data-speed="0.08">
             We Build Paid Ad Systems That{' '}
             <span className="text-gradient">2x Your Revenue</span>{' '}
             in 90 Days
@@ -42,8 +42,8 @@ export const GuaranteeSection: React.FC = () => {
               </div>
               
               <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-4 bg-warning/10 rounded-full flex items-center justify-center">
-                  <Shield className="h-8 w-8 text-warning" />
+                <div className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
+                  <Shield className="h-8 w-8 text-primary" />
                 </div>
                 <h3 className="font-bold text-lg mb-2">Zero Risk</h3>
                 <p className="text-muted-foreground text-sm">Your success is guaranteed or you pay nothing more</p>

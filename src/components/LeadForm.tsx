@@ -5,6 +5,7 @@ import { Label } from '@/components/ui/label';
 import { Card } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { ArrowRight, Send } from 'lucide-react';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
 
 interface LeadFormProps {
   className?: string;
@@ -101,30 +102,34 @@ export const LeadForm: React.FC<LeadFormProps> = ({ className = '', variant = 'h
             />
           </div>
           <div>
-            <Label htmlFor="company">Company Name *</Label>
+            <Label htmlFor="company">Company Name <span className="text-muted-foreground">(optional)</span></Label>
             <Input
               id="company"
               name="company"
               type="text"
-              required
               value={formData.company}
               onChange={handleChange}
               placeholder="Your Company"
+              aria-required={false}
             />
           </div>
         </div>
         
         <div>
-          <Label htmlFor="country">Country/Region *</Label>
-          <Input
-            id="country"
-            name="country"
-            type="text"
-            required
+          <Label htmlFor="country">Country/Region <span className="text-muted-foreground">(optional)</span></Label>
+          <Select
             value={formData.country}
-            onChange={handleChange}
-            placeholder="United States"
-          />
+            onValueChange={(val) => setFormData((prev) => ({ ...prev, country: val }))}
+          >
+            <SelectTrigger id="country" className="w-full">
+              <SelectValue placeholder="Select a region" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="United States">United States</SelectItem>
+              <SelectItem value="Canada">Canada</SelectItem>
+              <SelectItem value="Europe">Europe</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
         
         <Button type="submit" variant="cta" size="lg" className="w-full">

@@ -25,6 +25,26 @@ export const SocialProofSection: React.FC = () => {
       author: "Priya Nair",
       role: "Director, SaaSConnect",
     },
+    {
+      quote: "Talknlock transformed our ad campaigns from break-even to profitable in under 45 days.",
+      author: "Lucas Brown",
+      role: "Head of Marketing, ProBuild",
+    },
+    {
+      quote: "A complete game-changer — their CRO work alone paid for the campaign in the first month.",
+      author: "Amira Khan",
+      role: "Founder, LuxeGems",
+    },
+    {
+      quote: "They know exactly how to target high-value leads without wasting budget. Highly recommend.",
+      author: "Oliver White",
+      role: "CEO, TravelVista",
+    },
+    {
+      quote: "I finally understand where my ad spend goes, and the results speak for themselves.",
+      author: "Elena Petrova",
+      role: "CMO, SoftCore Solutions",
+    },
   ];
 
   const marqueeRef = useRef<HTMLDivElement>(null);
@@ -49,6 +69,19 @@ export const SocialProofSection: React.FC = () => {
         // Calculate half width (original set)
         const originalChildren = Array.from(track.children).slice(0, testimonials.length) as HTMLElement[];
         const distance = originalChildren.reduce((acc, el) => acc + el.offsetWidth, 0) + gap * (originalChildren.length - 1);
+
+        // Staggered fade-in on first appearance
+        gsap.from(originalChildren, {
+          opacity: 0,
+          y: 16,
+          duration: 0.6,
+          stagger: 0.08,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: marqueeRef.current!,
+            start: 'top 80%'
+          }
+        });
 
         const tween = gsap.to(track, {
           x: `-=${distance}`,
@@ -110,24 +143,25 @@ export const SocialProofSection: React.FC = () => {
   }, []);
 
   return (
-    <section className="py-20 bg-muted/30">
+    <section className="py-12 md:py-20 bg-surface-subtle">
       <div className="container mx-auto px-4">
         {/* Heading */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-8 md:mb-12">
           <h2 className="text-3xl md:text-4xl font-bold">
             Loved by Businesses Worldwide
           </h2>
+          <div className="mx-auto mt-3 h-1 w-24 rounded-full gradient-cta"></div>
         </div>
 
         {/* Desktop/Tablet: GSAP marquee */}
-        <div ref={marqueeRef} className="relative hidden md:block overflow-hidden">
+        <div ref={marqueeRef} className="relative hidden md:block overflow-hidden" data-parallax="true" data-speed="0.05">
           <div ref={trackRef} className="flex items-stretch gap-6 will-change-transform">
             {testimonials.map((t, idx) => (
               <Card
                 key={idx}
                 className="min-w-[48%] lg:min-w-[32%] p-6 rounded-xl bg-card shadow-sm hover:shadow-md transition-transform duration-300 hover:-translate-y-1"
               >
-                <p className="text-[18px] leading-relaxed text-foreground/90">“{t.quote}”</p>
+                <p className="text-[18px] leading-relaxed text-foreground/90">{t.quote}</p>
                 <div className="mt-4 text-sm text-muted-foreground">— {t.author}, {t.role}</div>
               </Card>
             ))}
@@ -142,29 +176,9 @@ export const SocialProofSection: React.FC = () => {
                 key={idx}
                 className="snap-center shrink-0 w-[85%] p-6 rounded-xl bg-card shadow-sm hover:shadow-md transition-transform duration-300 hover:-translate-y-1"
               >
-                <p className="text-[18px] leading-relaxed text-foreground/90">“{t.quote}”</p>
+                <p className="text-[18px] leading-relaxed text-foreground/90">{t.quote}</p>
                 <div className="mt-4 text-sm text-muted-foreground">— {t.author}, {t.role}</div>
               </Card>
             ))}
           </div>
         </div>
-        
-        {/* Stats */}
-        <div className="grid md:grid-cols-3 gap-8 mt-16">
-          <div className="text-center">
-            <div className="text-4xl font-bold text-primary mb-2">500+</div>
-            <div className="text-muted-foreground">Campaigns Optimized</div>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl font-bold text-primary mb-2">$50M+</div>
-            <div className="text-muted-foreground">Ad Spend Managed</div>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl font-bold text-primary mb-2">2.8x</div>
-            <div className="text-muted-foreground">Average ROAS Improvement</div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
