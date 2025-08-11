@@ -53,7 +53,7 @@ export const HeroSection: React.FC = () => {
               </div>
               <div className="flex items-center gap-2">
                 <TrendingUp className="h-5 w-5" />
-                <span className="text-sm">Average 2.8x ROAS</span>
+                <span className="text-sm">Average 6.8x ROAS</span>
               </div>
             </div>
           </div>
