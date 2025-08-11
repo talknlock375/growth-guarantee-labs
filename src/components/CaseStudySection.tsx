@@ -2,15 +2,11 @@ import React from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { TrendingUp, Users, DollarSign, ArrowRight } from 'lucide-react';
-
 export const CaseStudySection: React.FC = () => {
-  return (
-    <section className="py-20 bg-white">
+  return <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Real Results for Real Businesses
-          </h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">Real Results for Real Businesses</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             See how we transformed Blue Ribbon SaaS from struggling campaigns to explosive growth.
           </p>
@@ -90,6 +86,5 @@ export const CaseStudySection: React.FC = () => {
           </Card>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };

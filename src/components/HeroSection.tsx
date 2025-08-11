@@ -3,16 +3,13 @@ import { Button } from '@/components/ui/button';
 import { LeadForm } from './LeadForm';
 import { ArrowRight, TrendingUp, Users, Zap } from 'lucide-react';
 import heroImage from '@/assets/hero-bg.jpg';
-
 export const HeroSection: React.FC = () => {
-  return (
-    <section className="relative min-h-screen flex items-center py-20 overflow-hidden">
+  return <section className="relative min-h-screen flex items-center py-20 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 gradient-hero opacity-95"></div>
-      <div 
-        className="absolute inset-0 bg-cover bg-center mix-blend-multiply opacity-40"
-        style={{ backgroundImage: `url(${heroImage})` }}
-      ></div>
+      <div className="absolute inset-0 bg-cover bg-center mix-blend-multiply opacity-40" style={{
+      backgroundImage: `url(${heroImage})`
+    }}></div>
       
       {/* Content */}
       <div className="container mx-auto px-4 relative z-10">
@@ -31,7 +28,7 @@ export const HeroSection: React.FC = () => {
               </span>
             </h1>
             
-            <h2 className="text-xl md:text-2xl font-medium mb-8 text-white/90 leading-relaxed">
+            <h2 className="text-xl font-medium mb-8 text-white/90 leading-relaxed md:text-2xl">
               Get a <strong>Free Audit & Growth Plan</strong> that reveals exactly why your campaigns aren't converting and how to fix it in 90 days.
             </h2>
             
@@ -74,6 +71,5 @@ export const HeroSection: React.FC = () => {
           <div className="w-1 h-3 bg-white/60 rounded-full mt-2"></div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
