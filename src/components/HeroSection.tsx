@@ -36,7 +36,7 @@ export const HeroSection: React.FC = () => {
               <Button variant="cta" size="lg" className="text-lg px-8 py-4">
                 Get Free Audit <ArrowRight className="h-5 w-5" />
               </Button>
-              <Button variant="ctaOutline" size="lg" className="text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-primary">
+              <Button variant="ctaOutline" size="lg" className="text-lg px-8 py-4">
                 View Case Studies
               </Button>
             </div>
