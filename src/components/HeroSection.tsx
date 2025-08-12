@@ -2,33 +2,13 @@ import React, { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { LeadForm } from './LeadForm';
 import { ArrowRight, TrendingUp, Users, Zap } from 'lucide-react';
-import gsap from 'gsap';
+
 import heroImage from '@/assets/hero-bg.jpg';
 export const HeroSection: React.FC = () => {
   const fireRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    if (!fireRef.current) return;
-    const mobile = window.matchMedia('(max-width: 768px)').matches;
-    const intensity = mobile ? 0.75 : 1;
-    const glow1 = `rgba(255,215,0,${0.5 * intensity})`;
-    const glow2 = `rgba(255,69,0,${0.4 * intensity})`;
-    const rand = gsap.utils.random(1.2, 2.5, true);
-    const tl = gsap.timeline({ repeat: -1, yoyo: true });
-    tl
-      .to(fireRef.current, {
-        textShadow: `0 0 10px ${glow1}, 0 0 16px ${glow2}`,
-        duration: rand(),
-        ease: 'sine.inOut',
-        filter: 'blur(0.2px)',
-      })
-      .to(fireRef.current, {
-        textShadow: `0 0 4px ${glow1}, 0 0 8px ${glow2}`,
-        duration: rand(),
-        ease: 'sine.inOut',
-        filter: 'blur(0px)',
-      });
-    return () => { tl.kill(); };
+    // Fire/glow effect removed per requirements
   }, []);
 
   return (
@@ -56,7 +36,7 @@ export const HeroSection: React.FC = () => {
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
               Struggling to Scale with{' '}
-              <span ref={fireRef} className="text-fire-gradient bg-clip-text text-transparent">
+              <span ref={fireRef} className="text-[hsl(var(--accent-gold))] font-semibold">
                 Google Ads?
               </span>
             </h1>
