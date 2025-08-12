@@ -28,7 +28,7 @@ export const HeroSection: React.FC = () => {
         ease: 'sine.inOut',
         filter: 'blur(0px)',
       });
-    return () => tl.kill();
+    return () => { tl.kill(); };
   }, []);
 
   return (
