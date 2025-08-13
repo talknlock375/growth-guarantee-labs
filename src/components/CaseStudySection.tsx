@@ -81,7 +81,7 @@ export const CaseStudySection: React.FC = () => {
   };
 
   return (
-    <section className="py-16 md:py-20 bg-white">
+    <section id="case-studies" className="py-16 md:py-20 bg-white">
       <div className="container mx-auto px-4">
         {/* Heading */}
         <div className="text-center mb-8 md:mb-12">

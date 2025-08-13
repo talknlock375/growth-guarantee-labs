@@ -79,8 +79,8 @@ export const GuaranteeSection: React.FC = () => {
               Your success is our success.
             </p>
             
-            <Button asChild variant="cta" size="lg" className="text-xl px-12 py-6">
-              <a href="#lead-form">Claim Your Free Audit Now <ArrowRight className="h-6 w-6" /></a>
+            <Button asChild variant="cta" size="lg" className="text-lg md:text-xl px-8 md:px-12 py-4 md:py-6">
+              <a href="#lead-form">Claim Your Free Audit Now <ArrowRight className="h-5 w-5 md:h-6 md:w-6" /></a>
             </Button>
             
             <p className="text-sm text-muted-foreground">

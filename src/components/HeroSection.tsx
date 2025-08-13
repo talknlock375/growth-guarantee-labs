@@ -50,7 +50,7 @@ export const HeroSection: React.FC = () => {
                 <a href="#lead-form">Get Free Audit <ArrowRight className="h-5 w-5" /></a>
               </Button>
               <Button asChild variant="ctaOutline" size="lg" className="text-lg px-8 py-4">
-                <a href="#lead-form">View Case Studies</a>
+                <a href="#case-studies">View Case Studies</a>
               </Button>
             </div>
             
