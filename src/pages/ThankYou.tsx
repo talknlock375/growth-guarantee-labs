@@ -70,16 +70,18 @@ const ThankYou: React.FC = () => {
           </div>
           
           <div className="space-y-4">
-            <Link to="/">
+            <Link to="/#lead-form">
               <Button variant="outline" className="mr-4">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back to Home
               </Button>
             </Link>
             
-            <Button variant="cta">
-              <Calendar className="h-4 w-4 mr-2" />
-              Schedule Call Now
+            <Button asChild variant="cta">
+              <a href="/#lead-form">
+                <Calendar className="h-4 w-4 mr-2" />
+                Schedule Call Now
+              </a>
             </Button>
           </div>
           

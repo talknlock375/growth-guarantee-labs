@@ -6,11 +6,17 @@ import { Card } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { ArrowRight, Send } from 'lucide-react';
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
+import emailjs from '@emailjs/browser';
 
 interface LeadFormProps {
   className?: string;
   variant?: 'hero' | 'footer';
 }
+
+// EmailJS configuration
+const EMAILJS_SERVICE_ID = 'service_inwpweq';
+const EMAILJS_TEMPLATE_ID = 'template_p21y3tk';
+const EMAILJS_PUBLIC_KEY = '1dhxZHMIMCjoFCiLL';
 
 export const LeadForm: React.FC<LeadFormProps> = ({ className = '', variant = 'hero' }) => {
   const [formData, setFormData] = useState({
@@ -22,20 +28,39 @@ export const LeadForm: React.FC<LeadFormProps> = ({ className = '', variant = 'h
   });
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Simulate form submission
-    console.log('Form submitted:', formData);
-    
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  try {
+    await emailjs.send(
+      EMAILJS_SERVICE_ID,
+      EMAILJS_TEMPLATE_ID,
+      {
+        first_name: formData.firstName,
+        email: formData.email,
+        phone: formData.phone,
+        company: formData.company || 'N/A',
+        country: formData.country || 'N/A',
+        subject: 'New Lead - Free Audit Request',
+        message: 'Lead submitted via website lead form.'
+      },
+      EMAILJS_PUBLIC_KEY
+    );
+
     toast({
       title: "Success!",
       description: "Your audit request has been submitted. We'll contact you within 24 hours.",
     });
 
-    // Redirect to thank you page
     window.location.href = '/thank-you';
-  };
+  } catch (error) {
+    console.error('EmailJS error:', error);
+    toast({
+      title: 'Something went wrong',
+      description: 'Please try again or email us directly at hello@adscalepro.com.',
+    });
+  }
+};
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData(prev => ({

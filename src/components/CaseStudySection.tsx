@@ -135,8 +135,8 @@ export const CaseStudySection: React.FC = () => {
 
         {/* CTA */}
         <div className="mt-6 text-center">
-          <Button variant="cta" className="px-6">
-            See More Case Studies <ArrowRight className="h-4 w-4" />
+          <Button asChild variant="cta" className="px-6">
+            <a href="#lead-form">See More Case Studies <ArrowRight className="h-4 w-4" /></a>
           </Button>
         </div>
       </div>

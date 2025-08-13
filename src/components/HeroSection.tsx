@@ -46,11 +46,11 @@ export const HeroSection: React.FC = () => {
             </h2>
             
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
-              <Button variant="cta" size="lg" className="text-lg px-8 py-4">
-                Get Free Audit <ArrowRight className="h-5 w-5" />
+              <Button asChild variant="cta" size="lg" className="text-lg px-8 py-4">
+                <a href="#lead-form">Get Free Audit <ArrowRight className="h-5 w-5" /></a>
               </Button>
-              <Button variant="ctaOutline" size="lg" className="text-lg px-8 py-4">
-                View Case Studies
+              <Button asChild variant="ctaOutline" size="lg" className="text-lg px-8 py-4">
+                <a href="#lead-form">View Case Studies</a>
               </Button>
             </div>
             
