@@ -47,19 +47,21 @@ export const SolutionSection: React.FC = () => {
       const cards = container.querySelectorAll('.solution-card');
       const totalCards = cards.length;
       
-      // Clone cards for infinite loop
-      cards.forEach(card => {
-        const clone = card.cloneNode(true) as HTMLElement;
-        clone.classList.add('clone');
-        container.appendChild(clone);
-      });
+      // Clone cards multiple times for seamless infinite loop
+      for (let i = 0; i < 2; i++) {
+        cards.forEach(card => {
+          const clone = card.cloneNode(true) as HTMLElement;
+          clone.classList.add('clone');
+          container.appendChild(clone);
+        });
+      }
 
       const allCards = container.querySelectorAll('.solution-card');
       const cardWidth = cards[0].getBoundingClientRect().width;
       const gap = 16;
       const totalWidth = (cardWidth + gap) * totalCards;
 
-      // Position cards
+      // Position all cards in a continuous line
       allCards.forEach((card, index) => {
         gsap.set(card, { 
           x: index * (cardWidth + gap),
@@ -69,27 +71,45 @@ export const SolutionSection: React.FC = () => {
         });
       });
 
-      // Create infinite loop animation
+      // Create seamless infinite loop
       timelineRef.current = gsap.timeline({ repeat: -1 });
+      
+      // Animate to move exactly one set's worth, then reset position seamlessly
       timelineRef.current.to(allCards, {
         x: `-=${totalWidth}`,
-        duration: 22,
-        ease: 'none'
+        duration: 20,
+        ease: 'none',
+        modifiers: {
+          x: (x) => {
+            return (parseFloat(x) % totalWidth) + 'px';
+          }
+        }
       });
 
       // Pause on hover/touch
-      container.addEventListener('mouseenter', () => timelineRef.current?.pause());
-      container.addEventListener('mouseleave', () => timelineRef.current?.resume());
-      container.addEventListener('touchstart', () => timelineRef.current?.pause());
-      container.addEventListener('touchend', () => timelineRef.current?.resume());
+      const pauseAnimation = () => timelineRef.current?.pause();
+      const resumeAnimation = () => timelineRef.current?.resume();
+      
+      container.addEventListener('mouseenter', pauseAnimation);
+      container.addEventListener('mouseleave', resumeAnimation);
+      container.addEventListener('touchstart', pauseAnimation);
+      container.addEventListener('touchend', resumeAnimation);
+
+      return () => {
+        container.removeEventListener('mouseenter', pauseAnimation);
+        container.removeEventListener('mouseleave', resumeAnimation);
+        container.removeEventListener('touchstart', pauseAnimation);
+        container.removeEventListener('touchend', resumeAnimation);
+      };
     };
 
-    initCarousel();
+    const cleanup = initCarousel();
 
     return () => {
       if (timelineRef.current) {
         timelineRef.current.kill();
       }
+      cleanup?.then(cleanupFn => cleanupFn?.());
     };
   }, []);
 
