@@ -122,7 +122,7 @@ export const ProblemSection: React.FC = () => {
             {problems.map((problem, index) => (
               <Card 
                 key={index} 
-                className="problem-card p-6 md:p-8 text-center hover:shadow-lg transition-shadow bg-white w-[calc(100%-32px)] md:w-[calc(50%-24px)]"
+                className="problem-card p-6 md:p-8 text-center hover:shadow-lg transition-shadow bg-white w-[calc(100%-32px)] md:w-[calc(50%-24px)] h-80"
                 style={{ minWidth: 'calc(100% - 32px)' }}
               >
                 <div className="w-16 h-16 mx-auto mb-6 bg-destructive/10 rounded-full flex items-center justify-center">

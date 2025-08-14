@@ -165,7 +165,7 @@ export const SolutionSection: React.FC = () => {
             {solutions.map((solution, index) => (
               <Card 
                 key={index} 
-                className="solution-card group border-border/60 bg-card/60 backdrop-blur-md transition-all duration-300 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 focus-within:ring-2 focus-within:ring-primary/30 w-[calc(100%-32px)] md:w-[calc(50%-24px)]"
+                className="solution-card group border-border/60 bg-card/60 backdrop-blur-md transition-all duration-300 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 focus-within:ring-2 focus-within:ring-primary/30 w-[calc(100%-32px)] md:w-[calc(50%-24px)] h-80"
                 style={{ minWidth: 'calc(100% - 32px)' }}
               >
                 <div className="p-6">

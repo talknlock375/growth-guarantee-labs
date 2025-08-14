@@ -78,7 +78,7 @@ const ThankYou: React.FC = () => {
             </Link>
             
             <Button asChild variant="cta">
-              <a href="/#lead-form">
+              <a href="https://calendly.com/talknlock375/30min" target="_blank" rel="noopener noreferrer">
                 <Calendar className="h-4 w-4 mr-2" />
                 Schedule Call Now
               </a>
