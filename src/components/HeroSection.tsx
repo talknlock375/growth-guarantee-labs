@@ -12,7 +12,7 @@ export const HeroSection: React.FC = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center py-12 md:py-20 overflow-hidden">
+    <section className="relative min-h-[75vh] md:min-h-screen flex items-center py-8 md:py-20 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 gradient-hero opacity-95 parallax" data-parallax="true" data-speed="0.15"></div>
       <div
@@ -26,7 +26,7 @@ export const HeroSection: React.FC = () => {
       
       {/* Content */}
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start lg:items-center">
           {/* Left Column - Headlines & CTA */}
           <div className="text-white">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
