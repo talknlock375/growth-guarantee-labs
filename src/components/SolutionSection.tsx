@@ -159,7 +159,7 @@ export const SolutionSection: React.FC = () => {
         <div className="lg:hidden relative overflow-hidden" aria-live="polite">
           <div 
             ref={containerRef}
-            className="relative"
+            className="relative min-h-[280px]"
             style={{ width: '100%' }}
           >
             {solutions.map((solution, index) => (
