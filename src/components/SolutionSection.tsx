@@ -133,27 +133,25 @@ export const SolutionSection: React.FC = () => {
         </header>
 
         {/* Desktop Grid */}
-        <ul className="hidden lg:grid gap-6 lg:grid-cols-3">
+        <div className="hidden lg:grid gap-6 lg:grid-cols-3">
           {solutions.map((solution, index) => (
-            <li key={index}>
-              <Card className="group h-full border-border/60 bg-card/60 backdrop-blur-md transition-all duration-300 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 focus-within:ring-2 focus-within:ring-primary/30">
-                <div className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary ring-1 ring-primary/20 transition-colors group-hover:bg-primary/15 group-hover:ring-primary/30">
-                      <solution.icon className="h-6 w-6" aria-hidden="true" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-foreground">{solution.title}</h3>
-                      <p className="text-muted-foreground mt-2">
-                        {solution.description}
-                      </p>
-                    </div>
+            <Card key={index} className="group border-border/60 bg-card/60 backdrop-blur-md transition-all duration-300 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 focus-within:ring-2 focus-within:ring-primary/30">
+              <div className="p-6">
+                <div className="flex items-start gap-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary ring-1 ring-primary/20 transition-colors group-hover:bg-primary/15 group-hover:ring-primary/30">
+                    <solution.icon className="h-6 w-6" aria-hidden="true" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-foreground">{solution.title}</h3>
+                    <p className="text-muted-foreground mt-2">
+                      {solution.description}
+                    </p>
                   </div>
                 </div>
-              </Card>
-            </li>
+              </div>
+            </Card>
           ))}
-        </ul>
+        </div>
 
         {/* Mobile/Tablet Carousel */}
         <div className="lg:hidden relative overflow-hidden" aria-live="polite">
